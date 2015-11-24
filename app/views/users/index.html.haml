@@ -1,0 +1,34 @@
+%p#notice= notice
+
+%h1 Listing users
+
+%table.table.datatable.table-hover
+  %thead
+    %tr
+      %th= t :last_name
+      %th= t :first_name
+      %th= t :email
+      %th= t :role
+      %th= t :position
+      %th= t :status
+      %th= t :actions
+
+  %tbody
+    - @users.order(:position).each do |user|
+      %tr
+        %td= user.last_name
+        %td= user.first_name
+        %td= user.email
+        %td= user.role
+        %td= user.position
+        %td= status_mark user.status
+
+        %td.buttons
+          = link_to image_tag('buttons/show.png',   alt: 'показать',      title: 'показать'),      user
+          = link_to image_tag('buttons/edit.png',   alt: 'редактировать', title: 'редактировать'), edit_user_path(user)
+          = link_to image_tag('buttons/delete.png', alt: 'удалить',       title: 'удалить'),       user, method: :delete, data: {confirm: 'Вы уверены?'}
+
+%br
+.row
+  .col-md-2
+    = link_to t(:new), new_user_path, class: 'btn btn-primary btn-block'

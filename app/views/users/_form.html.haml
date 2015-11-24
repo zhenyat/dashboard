@@ -1,0 +1,21 @@
+.row
+  .col-md-6
+    = simple_form_for(@user) do |f|
+      = f.error_notification
+
+      .form-inputs
+        = f.input :last_name
+        = f.input :first_name
+        = f.input :email
+        = f.input :role
+        = f.input :position, as: :hidden
+        = f.input :status
+
+      .form-actions
+        .row
+          .col-md-4
+            = f.submit :class => "btn btn-primary btn-block"
+          .col-md-3
+            = link_to t(:show), @user,  class: 'btn btn-info btn-block' unless @user.new_record?
+          .col-md-3
+            = link_to t(:back), users_path, class: "btn btn-default btn-block"
