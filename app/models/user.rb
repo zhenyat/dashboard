@@ -4,18 +4,16 @@
 # Purpose:
 #
 # User attributes:
-#   role              - role:           enum
-#   last_name         - string:
-#   first_name        - string:
-#   email             - email:          string,  not NULL, unique
-#   position          - sorting index:  integer, not NULL
-#   status            - status:         enum { active (0) | archived (1) }
+#   role              - User's role: enum
+#   last_name         - Last name:   string, not NULL
+#   first_name        - First name:  string, not NULL
+#   email             - email:       string,  not NULL, unique
+#   status            - status:      enum { active (0) | archived (1) }, default: 0
 #
 #  24.11.2015 ZT
 ################################################################################
 class User < ActiveRecord::Base
 
-  before_save :set_position
   before_save {self.email.downcase!}
 
   enum role:   %w(manager admin sysadmin)

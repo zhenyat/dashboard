@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  root 'pages#home'
+  get 'pages/dashboard1'
+  get 'pages/dashboard2'
+  get 'pages/dashboard3'
+  get 'pages/dashboard4'
+
+#  root 'home#index'
+   
   resources :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
